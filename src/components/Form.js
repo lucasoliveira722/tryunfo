@@ -1,8 +1,19 @@
 import React from 'react';
-import './Form.css';
 
 class Form extends React.Component {
   render() {
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+      onSaveButtonClick
+    } = this.props;
     return (
       <div id="form">
         <label htmlFor="cardName">
