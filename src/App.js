@@ -8,16 +8,17 @@ class App extends React.Component {
 
     this.onInputChange = this.onInputChange.bind(this);
 
-    // this.state = {
-    //   cardName: '',
-    //   cardDescription: '',
-    //   cardAttr1: '',
-    //   cardAttr2: '',
-    //   cardAttr3: '',
-    //   cardImage: '',
-    //   cardRare: false,
-    //   hasTrunfo: false,
-    // };
+    this.state = {
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: '',
+      hasTrunfo: false,
+      cardTrunfo: false,
+    };
   }
 
   onInputChange({ target }) {
@@ -30,11 +31,43 @@ class App extends React.Component {
   }
 
   render() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      hasTrunfo,
+      cardTrunfo,
+    } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Form />
-        <Card />
+        <Form
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
+          onInputChange={ this.onInputChange }
+        />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+        />
       </div>
     );
   }
