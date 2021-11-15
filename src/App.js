@@ -8,6 +8,7 @@ class App extends React.Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.validation = this.validation.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 
     this.state = {
       cardName: '',
@@ -20,6 +21,7 @@ class App extends React.Component {
       hasTrunfo: false,
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      savedCards: [],
     };
   }
 
@@ -30,6 +32,47 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     }, this.validation);
+  }
+
+  onSaveButtonClick() {
+    const {
+      savedCards,
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const newCard = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState({
+      savedCards: [...savedCards, newCard],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'Normal',
+      cardTrunfo: false,
+    });
+
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
   }
 
   validation() {
@@ -101,6 +144,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
