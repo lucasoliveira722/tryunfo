@@ -7,6 +7,7 @@ class App extends React.Component {
     super();
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.validation = this.validation.bind(this);
 
     this.state = {
       cardName: '',
@@ -18,6 +19,7 @@ class App extends React.Component {
       cardRare: '',
       hasTrunfo: false,
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -27,7 +29,47 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    });
+    }, this.validation);
+  }
+
+  validation() {
+    const valorMaximo = 90;
+    const valorMinimo = 0;
+    const somaTotal = 210;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    // Conversão do objeto em número demonstrado em https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number
+    const somaAtributos = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+    if ((cardName.length !== 0
+      && cardDescription.length !== 0
+      && cardImage.length !== 0
+      && cardRare.length !== 0)
+      // && valorMinimo <= Number(cardAttr1) <= valorMaximo
+      && Number(cardAttr1) >= valorMinimo
+      && Number(cardAttr1) <= valorMaximo
+      // && valorMinimo <= Number(cardAttr2) <= valorMaximo
+      && Number(cardAttr2) >= valorMinimo
+      && Number(cardAttr2) <= valorMaximo
+      // && valorMinimo <= Number(cardAttr3) <= valorMaximo
+      && Number(cardAttr3) >= valorMinimo
+      && Number(cardAttr3) <= valorMaximo
+      && somaAtributos <= somaTotal) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    }
   }
 
   render() {
@@ -41,6 +83,7 @@ class App extends React.Component {
       cardRare,
       hasTrunfo,
       cardTrunfo,
+      isSaveButtonDisabled,
     } = this.state;
 
     return (
@@ -56,6 +99,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
         />
         <Card
