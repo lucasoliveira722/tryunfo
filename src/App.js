@@ -7,7 +7,7 @@ class App extends React.Component {
     super();
 
     this.onInputChange = this.onInputChange.bind(this);
-    this.validation = this.validation.bind(this);
+    this.validationSaveButton = this.validationSaveButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 
     this.state = {
@@ -31,7 +31,7 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    }, this.validation);
+    }, this.validationSaveButton);
   }
 
   onSaveButtonClick() {
@@ -75,7 +75,7 @@ class App extends React.Component {
     }
   }
 
-  validation() {
+  validationSaveButton() {
     const valorMaximo = 90;
     const valorMinimo = 0;
     const somaTotal = 210;
