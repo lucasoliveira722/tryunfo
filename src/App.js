@@ -208,7 +208,7 @@ class App extends React.Component {
           IMPORTANTE
           */}
           {
-            savedCards.filter((card) => card.cardName === nameFilter) /* REMOVER A PARTE DE FILTER */
+            savedCards/* REMOVER A PARTE DE FILTER */
               .map((card, index) => (
                 <div key={ index }>
                   <Card
