@@ -1,6 +1,6 @@
 .card {
+  background-color: lightgray;
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
   max-width: 350px;
 }
