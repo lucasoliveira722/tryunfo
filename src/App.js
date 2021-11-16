@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+// import SavedCards from './components/SavedCards';
 
 class App extends React.Component {
   constructor() {
@@ -188,7 +189,6 @@ class App extends React.Component {
           {/* https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples */}
           <label htmlFor="nameFilter">
             Filtro: Nome
-            {/* savedCards.filter((card) => nameFilter).map(filteredCards => "Cartas colocadas") */}
             <input
               data-testid="name-filter"
               type="text"
@@ -197,28 +197,39 @@ class App extends React.Component {
               onChange={ this.onInputChange }
             />
           </label>
+          {/* savedCards.filter((card) => nameFilter).map(filteredCards => "Cartas colocadas") */}
+          {/* IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          IMPORTANTE
+          */}
           {
-            savedCards.map((card, index) => (
-              <div key={ index }>
-                <Card
-                  key={ card.cardName }
-                  cardName={ card.cardName }
-                  cardDescription={ card.cardDescription }
-                  cardAttr1={ card.cardAttr1 }
-                  cardAttr2={ card.cardAttr2 }
-                  cardAttr3={ card.cardAttr3 }
-                  cardImage={ card.cardImage }
-                  cardRare={ card.cardRare }
-                  cardTrunfo={ card.cardTrunfo }
-                />
-                <button
-                  type="button"
-                  onClick={ () => this.delete(index) }
-                  data-testid="delete-button"
-                >
-                  Excluir
-                </button>
-              </div>))
+            savedCards.filter((card) => card.cardName === nameFilter) /* REMOVER A PARTE DE FILTER */
+              .map((card, index) => (
+                <div key={ index }>
+                  <Card
+                    key={ card.cardName }
+                    cardName={ card.cardName }
+                    cardDescription={ card.cardDescription }
+                    cardAttr1={ card.cardAttr1 }
+                    cardAttr2={ card.cardAttr2 }
+                    cardAttr3={ card.cardAttr3 }
+                    cardImage={ card.cardImage }
+                    cardRare={ card.cardRare }
+                    cardTrunfo={ card.cardTrunfo }
+                  />
+                  <button
+                    type="button"
+                    onClick={ () => this.delete(index) }
+                    data-testid="delete-button"
+                  >
+                    Excluir
+                  </button>
+                </div>))
           }
         </div>
       </>
