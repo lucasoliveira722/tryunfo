@@ -23,6 +23,8 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       savedCards: [],
+
+      nameFilter: '',
     };
   }
 
@@ -148,6 +150,7 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
       savedCards,
+      nameFilter,
     } = this.state;
 
     return (
@@ -181,6 +184,19 @@ class App extends React.Component {
         </div>
         <div>
           <h1>Seu Baralho</h1>
+
+          {/* https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples */}
+          <label htmlFor="nameFilter">
+            Filtro: Nome
+            {/* savedCards.filter((card) => nameFilter).map(filteredCards => "Cartas colocadas") */}
+            <input
+              data-testid="name-filter"
+              type="text"
+              name="nameFilter"
+              value={ nameFilter }
+              onChange={ this.onInputChange }
+            />
+          </label>
           {
             savedCards.map((card, index) => (
               <div key={ index }>
