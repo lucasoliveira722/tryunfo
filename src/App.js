@@ -9,6 +9,7 @@ class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.validationSaveButton = this.validationSaveButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.delete = this.delete.bind(this);
 
     this.state = {
       cardName: '',
@@ -111,6 +112,25 @@ class App extends React.Component {
     } else {
       this.setState({
         isSaveButtonDisabled: true,
+      });
+    }
+  }
+
+  delete(index) {
+    const { savedCards } = this.state;
+    // https://cursos.alura.com.br/forum/topico-remover-elemento-do-array-que-esta-no-state-64599
+    savedCards.splice(index, 1);
+    this.setState(() => ({
+      savedCards,
+    }));
+    const checkTrunfo = savedCards.some((card) => card.cardTrunfo === true);
+    if (checkTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
       });
     }
   }
